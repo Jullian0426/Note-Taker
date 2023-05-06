@@ -1,16 +1,16 @@
 const router = require('express').Router();
+const { v4: uuidv4 } = require('uuid');
 
 const { readNotesData, writeNotesData } = require('../helpers/fsUtils')
-const db = require('../db/db.json');
 
 // API routes
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
     // Read db.json and return saved notes
     const notesData = readNotesData();
     res.json(notesData);
 });
 
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     // Receive a new note, add it to db.json, and return the new note
     const notesData = readNotesData();
     const newNote = {
@@ -24,7 +24,7 @@ router.post('/api/notes', (req, res) => {
     res.json(newNote);
 });
 
-router.delete('/api/notes/:id', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
     // Delete a note with the specified id
     const notesData = readNotesData();
     const noteId = req.params.id;

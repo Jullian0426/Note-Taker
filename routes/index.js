@@ -1,10 +1,10 @@
 const express = require('express');
+const apiRouter = require('./apiRoutes'); // Import API Routes
+const htmlRouter = require('./htmlRoutes'); // Import HTML routes
 
-// Import our modular router for apiRoutes
-const apiRouter = require('./apiRoutes');
+const router = express.Router();
 
-const app = express();
+router.use('/api', apiRouter);
+router.use('/', htmlRouter);
 
-app.use('/notes', apiRouter)
-
-module.exports = app;
+module.exports = router;
